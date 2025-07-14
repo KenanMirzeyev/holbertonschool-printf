@@ -1,9 +1,9 @@
 #include "main.h"
 
 /**
- * _printf - Custom printf function
+ * _printf - Mimics printf with %c, %s, and %%
  * @format: Format string
- * Return: Number of characters printed (excluding null byte)
+ * Return: Number of characters printed
  */
 int _printf(const char *format, ...)
 {
@@ -28,9 +28,8 @@ int _printf(const char *format, ...)
 				count += write(1, "%", 1);
 			else
 			{
-				count += write(1, "%", 1);
-				count += write(1, &format[i], 1);
-			}
+
+			}	
 		}
 		else
 		{
