@@ -1,14 +1,15 @@
 #include "main.h"
+#include <stdarg.h>
 
 /**
- * _printf - Mimics printf with %c, %s, and %%
- * @format: Format string
- * Return: Number of characters printed
+ * _printf - custom printf function that handles %c, %s, %%
+ * @format: the format string
+ * Return: number of characters printed
  */
 int _printf(const char *format, ...)
 {
-	va_list args;
 	int i = 0, count = 0;
+	va_list args;
 
 	if (!format)
 		return (-1);
@@ -17,25 +18,44 @@ int _printf(const char *format, ...)
 
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1])
+		if (format[i] == '%')
 		{
 			i++;
+			if (!format[i])
+				return (-1);
+
 			if (format[i] == 'c')
-				count += print_char(args);
+			{
+				char c = va_arg(args, int);
+				count += _putchar(c);
+			}
 			else if (format[i] == 's')
-				count += print_string(args);
+			{
+				char *str = va_arg(args, char *);
+				int j = 0;
+
+				if (!str)
+					str = "(null)";
+
+				while (str[j])
+				{
+					count += _putchar(str[j]);
+					j++;
+				}
+			}
 			else if (format[i] == '%')
-				count += write(1, "%", 1);
+			{
+				count += _putchar('%');
+			}
 			else
 			{
-				count += write(1, "%", 1);
-				count += write(1, &format[i], 1);
-
-			}	
+				count += _putchar('%');
+				count += _putchar(format[i]);
+			}
 		}
 		else
 		{
-			count += write(1, &format[i], 1);
+			count += _putchar(format[i]);
 		}
 		i++;
 	}
