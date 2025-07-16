@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdarg.h>
+#include <unistd.h>
 
 /**
  * print_string - Prints a string
@@ -11,10 +13,14 @@ int print_string(va_list args)
 	int i = 0;
 
 	if (!str)
+	{
 		str = "(null)";
-
+	}
 	while (str[i])
-		write(1, &str[i++], 1);
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
 
 	return (i);
 }

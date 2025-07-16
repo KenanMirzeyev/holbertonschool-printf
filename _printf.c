@@ -3,7 +3,8 @@
 
 /**
  * _printf - custom printf function that handles %c, %s, %%
- * @format: the format string
+ * @format: The format string
+ *
  * Return: number of characters printed
  */
 int _printf(const char *format, ...)
@@ -25,28 +26,11 @@ int _printf(const char *format, ...)
 				return (-1);
 
 			if (format[i] == 'c')
-			{
-				char c = va_arg(args, int);
-				count += _putchar(c);
-			}
+				count += _putchar(va_arg(args, int));
 			else if (format[i] == 's')
-			{
-				char *str = va_arg(args, char *);
-				int j = 0;
-
-				if (!str)
-					str = "(null)";
-
-				while (str[j])
-				{
-					count += _putchar(str[j]);
-					j++;
-				}
-			}
+				count += print_string(args);
 			else if (format[i] == '%')
-			{
 				count += _putchar('%');
-			}
 			else
 			{
 				count += _putchar('%');
