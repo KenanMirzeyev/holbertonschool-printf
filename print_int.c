@@ -1,4 +1,5 @@
 #include "main.h"
+#include <limits.h>
 
 /**
  * print_int - prints an integer
@@ -8,15 +9,26 @@
 int print_int(va_list args)
 {
 	int n = va_arg(args, int);
+	unsigned int num;
 	int len = 0;
 	int divisor = 1;
-	int num = n;
 
 	if (n < 0)
 	{
 		_putchar('-');
 		len++;
-		num = -num;
+		if (n == INT_MIN)
+		{
+			num = (unsigned int)(INT_MAX) + 1;
+		}
+		else
+		{
+			num = -n;
+		}
+	}
+	else
+	{
+		num = n;
 	}
 
 	while ((num / divisor) >= 10)
