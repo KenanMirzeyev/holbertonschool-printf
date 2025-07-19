@@ -1,36 +1,63 @@
 .TH _PRINTF 3 "July 2025" "Holberton School" "User Commands"
 .SH NAME
-_printf \- formatted output conversion
-
+_printf \- formatted output conversion and print data
 .SH SYNOPSIS
 .B #include "main.h"
 
 .B int _printf(const char *format, ...);
-
 .SH DESCRIPTION
 The
-.B _printf
-function produces output according to a format string that specifies how subsequent arguments (or arguments accessed via the variable-length argument facilities of stdarg) are converted for output.
+.B _printf()
+function produces output according to a format which is described below. 
+This function writes output to the standard output (stdout), similar to the standard C library function 
+.BR printf(3) .
 
-Supported format specifiers:
+It takes a format string that may include conversion specifications (e.g., %d, %s) and replaces them with the appropriate argument values.
 
-.IP \fB%c\fR
+Supported format specifiers include:
+.TP
+.B %c
 Prints a single character.
-
-.IP \fB%s\fR
+.TP
+.B %s
 Prints a string of characters.
-
-.IP \fB%%\fR
+.TP
+.B %%
 Prints a percent sign.
+.TP
+.B %d , %i
+Prints a signed decimal integer.
+.TP
+.B %u
+Prints an unsigned decimal integer.
+.TP
+.B %o
+Prints an unsigned octal number.
+.TP
+.B %x , %X
+Prints an unsigned hexadecimal number (lowercase or uppercase).
+.TP
+.B %b
+Prints an unsigned number in binary (non-standard).
+.TP
+.B %r
+Prints a string in reverse (non-standard).
+.TP
+.B %R
+Applies ROT13 encoding to a string (non-standard).
+.TP
+.B %S
+Prints a string with non-printable characters shown as `\x` followed by ASCII hex value.
 
 .SH RETURN VALUE
-The number of characters printed (excluding the null byte used to end output to strings). Returns a negative value if an error occurs.
+Upon successful return, the 
+.B _printf()
+function returns the number of characters printed (excluding the null byte used to end output to strings).
 
-.SH NOTES
-This version of _printf does not handle flags, field width, precision, or length modifiers.
+If an error occurs, a negative value is returned.
 
 .SH AUTHORS
-Holberton School Students
+Written by Kenan Mirzeyev and contributors at Holberton School.
 
 .SH SEE ALSO
 .BR printf(3),
